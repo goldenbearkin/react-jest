@@ -1,4 +1,5 @@
 import * as React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
 type PropsT = {
   onClick: () => void
@@ -6,7 +7,8 @@ type PropsT = {
 
 class Button extends React.Component<PropsT> {
   render() {
-    return <button onClick={this.props.onClick}>Testing</button>;
+    return <RaisedButton onClick={this.props.onClick} label="Testing" />;
+    // return <button onClick={this.props.onClick}>Testing</button>;
   }
 }
 
