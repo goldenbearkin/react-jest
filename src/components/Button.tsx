@@ -2,7 +2,7 @@ import * as React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
 type PropsT = {
-  onClick: () => void
+  onClick?: () => void
 };
 
 class Button extends React.Component<PropsT> {
