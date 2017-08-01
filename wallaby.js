@@ -14,13 +14,14 @@ module.exports = function (wallaby) {
 
   return {
     files: [
-      'src/**/*.ts*',
-      '!src/**/*.test.ts*',
+      'src/**/*.ts?(x)',
+      'src/**/*.snap',
+      '!src/**/*.test.ts?(x)',
       '.storybook/config.js'
     ],
 
     tests: [
-      'src/**/*.test.ts*',
+      'src/**/*.test.ts?(x)',
     ],
 
     env: {
@@ -29,10 +30,13 @@ module.exports = function (wallaby) {
     },
 
     compilers: {
-      '**/*.ts?(x)': wallaby.compilers.typeScript({
-        module: 'commonjs',
-        tsx: 'React'
-      })
+      '**/*.ts?(x)': wallaby.compilers.typeScript(Object.assign(
+        require('./tsconfig.json').compilerOptions,
+        require('./tsconfig.test.json').compilerOptions))
+    },
+
+    preprocessors: {
+      '.storybook/config.js': f => f.content.replace('.tsx$', '.js$')
     },
 
     setup: (wallaby) => {
